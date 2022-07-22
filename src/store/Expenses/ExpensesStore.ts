@@ -28,14 +28,16 @@ class ExpensesStore {
     }
 
     public getSumInEuro() {
-        return this._expenses.reduce(
-            (acc, val) =>
-                (acc += +(
-                    val.getAmoutForCalculations() *
-                    ((1 / this.rootStore.exchangeRateStore.getEurWithoutDecimal()) * 10)
-                ).toFixed(2)),
-            0,
-        );
+        return this._expenses
+            .reduce(
+                (acc, val) =>
+                    (acc += +(
+                        val.getAmoutForCalculations() *
+                        ((1 / this.rootStore.exchangeRateStore.getEurWithoutDecimal()) * 10)
+                    ).toFixed(2)),
+                0,
+            )
+            .toFixed(2);
     }
 }
 
